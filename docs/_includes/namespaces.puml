@@ -1,0 +1,46 @@
+@startuml
+
+skinparam backgroundColor transparent
+skinparam defaultFontColor #B11E3E
+skinparam defaultFontSize 18
+skinparam defaultFontStyle bold
+skinparam arrowColor #888888
+skinparam arrowFontColor #519BC8
+skinparam arrowThickness 2
+
+skinparam actor {
+    borderColor black
+    backgroundColor white
+    fontColor black
+}
+skinparam agent {
+    borderColor black
+    backGroundcolor white
+    fontColor #B11E3E
+}
+skinparam rectangle {
+    borderColor #888888
+    backGroundcolor #FAFAFA
+    fontColor #444444
+}
+
+rectangle Cluster {
+    rectangle CICD {
+        agent pipeline
+    }
+    rectangle Dev {
+        agent dev_env as "env"
+    }
+    rectangle QA {
+        agent qa_env as "env"
+    }
+    rectangle Production {
+        agent prod_env as "env"
+    }
+    pipeline -right-> dev_env : 1
+    pipeline --> qa_env : 2
+    pipeline --> prod_env : 3
+    
+}
+
+@enduml
