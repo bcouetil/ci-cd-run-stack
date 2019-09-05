@@ -1,0 +1,67 @@
+@startuml
+
+skinparam backgroundColor transparent
+skinparam defaultFontColor #B11E3E
+skinparam defaultFontSize 18
+skinparam defaultFontStyle bold
+skinparam arrowColor #888888
+skinparam arrowFontColor #519BC8
+skinparam arrowThickness 2
+
+skinparam actor {
+    borderColor black
+    backgroundColor white
+    fontColor black
+}
+skinparam agent {
+    borderColor black
+    backGroundcolor white
+    fontColor #B11E3E
+    'borderColor white
+    'backGroundcolor #B11E3E
+    'fontColor white
+}
+skinparam card {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam rectangle {
+    borderColor #888888
+    backGroundcolor #FAFAFA
+    fontColor #444444
+}
+
+left to right direction
+
+rectangle cluster as "cluster <img:https://avatars1.githubusercontent.com/u/13629408?s=400&v=4{scale=0.08}>" {
+    rectangle cicd as "CI/CD <img:https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/GitLab_Logo.svg/520px-GitLab_Logo.svg.png{scale=0.05}>" {
+        agent build
+        agent test
+        agent check
+        agent package
+        agent deploy
+    }
+    card monitoring as "connect / secure\ncontrol / observe <img:https://1.cms.s81c.com/sites/default/files/2018-08-15/istio-logo.png{scale=0.15}>" {
+        'istio tools, but too long to generate for github :'(
+        'agent monitoring_tools as "<img:https://upload.wikimedia.org/wikipedia/en/thumb/3/38/Prometheus_software_logo.svg/1033px-Prometheus_software_logo.svg.png{scale=0.03}> <img:http://logodesignfx.com/wp-content/uploads/2018/09/grafana-logo-6-200x200.png{scale=0.15}> <img:http://design.jboss.org/kiali/logo/final/PNG/kiali_icon_lightbkg_128px.png{scale=0.25}> <img:https://avatars3.githubusercontent.com/u/15482765?s=280&v=4{scale=0.1}>"
+    }
+    card backlog as "backlog <img:https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/GitLab_Logo.svg/520px-GitLab_Logo.svg.png{scale=0.05}>"
+    card sq as "static\nanalyzer <img:https://pbs.twimg.com/profile_images/628548811263078400/zIVhxKyn_400x400.png{scale=0.1}>"
+    card artifact as "Maven / Docker /\nNpm artifacts <img:https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/GitLab_Logo.svg/520px-GitLab_Logo.svg.png{scale=0.05}>"
+    card cr as "code review <img:https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/GitLab_Logo.svg/520px-GitLab_Logo.svg.png{scale=0.05}>"
+    card env as "envs <img:https://avatars1.githubusercontent.com/u/13629408?s=400&v=4{scale=0.08}>"
+}
+
+build .. test
+test .. check
+check .. package
+package .. deploy
+
+backlog -right-> build
+check -left-> sq
+check -right-> cr
+package -left-> artifact
+deploy -left-> env
+
+@enduml

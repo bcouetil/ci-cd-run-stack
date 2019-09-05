@@ -1,0 +1,124 @@
+= CI/CD/Run stack
+:numbered:
+:toc:
+
+== Introduction
+
+The goal of this project is to build an OSS, all-in-one CI/CD/Run stack with best in class softwares.
+
+This project is useful for :
+
+- Zenika's devOps team, to learn and improve on tools expertise
+- Zenika, for bootstraping projects
+- Zenika's client, also for bootstraping projects
+- Growth of 'OSS by Zenika' movement
+- Spreading the world on CI/CD best practices, giving training courses
+
+== Features
+
+* All-in-one CI, CD and Run stack
+* Open-sourced by Zenika using OSS softwares
+* Cloud or on-premise
+* Highly automated
+* High availability
+* Elastic & provider-agnostic infrastructure
+* A Sample app with highly advanced quality and CI/CD pipelines
+* Choosable stack elements at installation
+* Fully complying to everything-as-code principle
+* Using and/or contributing to future unified pipeline project of the link:https://cd.foundation/[Continuous Delivery Foundation]
+
+=== Stack features
+
+* Source code manager
+* Pipeline orchestrator
+* Artifacts repositories (Maven artifacts, Docker images, NPM artifacts)
+* Code review tool
+* Static code analyzer
+* Tools for automated tests
+* Container orchestrator
+* Some integ/staging/prod environments
+* a service mesh
+* monitoring for all these tools
+* a centralized portal
+
+=== Sample application
+
+* Open source
+* Front & back
+* Technologies
+** Widely used (to serve as template)
+** With rich CICD ecosystem (for best-in-class pipelines)
+* No technical debt (quality and tests)
+* Already automated build and test
+
+Some existing aspects would help integration/demos :
+
+* Existing (gitlab) pipelines
+* Data initialization scripts
+* Traffic simulation
+* Performance tests
+* Microservices
+* Feature flipping with dedicated server (Izanami or similar)
+* Useful project for Zenika internal usage
+
+== Contribution
+
+This project will be, at start, fully contributed by Zenika devOps/craftmanship enthusiasts.
+
+As the project goes on contribution will be extended to :
+
+- OSS community
+- Zenika's clients
+- French governement (as an innovative initiative)
+
+== Version 0 : Minimum Viable Product
+
+First step is building a MVP product with a static set of easy-to-install components :
+
+* Managed Kubernetes cluster on GKE
+* Gitlab with Helm
+** Including SCM, pipeline orchestrator, code review tool, maven repository, npm registry, container registry
+* SonarQube with Helm
+* Istio with Helm, including
+** Prometheus
+** Grafana
+** Kiali
+** Jaeger Tracing
+
+//TODO : put master branch before merge
+
+image::http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/bcouetil/ci-cd-run-stack/1-initiate-study/docs/_includes/mvp.puml&cache_trick=4[]
+
+// easy edit : https://www.planttext.com/?text=nLF1Ri8m3BtdAo8Ekv4KnYQ61aDYqZI9JvWqXTI4Y3Rf4hUC8VvzIKk1zJo971BxoOdjlEUvH-6mp3D2CbWZHKkTLXkagNOWKLj3I3I4KHbGcPKUmL7XQMznifzrhYORnC9FE1UL2E_v0LCQD-MgzE2aDGW6cRGvB_dW_d7uD4h6BtuwIfAxQZewU2aoc2Oi6HzdFNeWDAohb5gcJRvtldZzcwqiCYjIjjDRdKEg1RDEyUWLqUCXOswDvw6IVCK7V33cRngNOlMvjCeoNod-C4oAxtu7POLHbweUBbN59LHeXgvAdQKT3C5Z1v8RaDiELWYv3LO7JI7qig_18xd0lYp0LTe77kWr_5L_IU0EjVmmmeXi_mEkTnKIMDLh8R4EF3kt-RwhicGZ7cbJ22HN6dQthmbCLHSLp_zLCpaIKak5CjRe8sxHQPHHxz5jHN4w8tHIn2cc7wUpFmlCjq0zfW6Hxdoh3Mhf9iqRPpmqICWSJ1hd_HS0
+
+=== Cluster architecture
+
+Easiest production-ready architecture is a single cluster with multiple namespaces.
+
+//TODO : put master branch before merge
+
+image::http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/bcouetil/ci-cd-run-stack/1-initiate-study/docs/_includes/namespaces.puml&cache_trick=3[]
+
+// easy edit : https://www.planttext.com/?text=XL0x3i8m3Drp2gjx1s3BW8hAmaR50L3KMY5IS4lYiA3UdRHGL3KWl5Xw7_lPXMVbE5oj40vhLgGjGcc3PtJm411hXX_A_HiSIcaaXivqQ0tX2FSBHxLBz3TrHhg3yf35ddsrdLXfGphn-XV-Vy3HjKsesRIKvetKhm7JBP0xeo-SRwUq4bOBGUJcQIIiKy5dbOJDo8fUY0Af6Vxz1000
+
+== Thoughts & alternatives
+
+=== Openshift
+
+Openshift has some limitations a universal CICD stack wants to avoid.
+
+.Some articles
+* https://cloudowski.com/articles/10-differences-between-openshift-and-kubernetes/
+* https://www.upwork.com/hiring/for-clients/kubernetes-vs-openshift-vs-tectonic/
+
+=== JenkinsX
+
+link:https://jenkins-x.io/[JenkinsX] is a strong new solution based on Kubernetes. To experiment.
+
+image:http://jenkins-x.io/images/jx-arch.png[]
+
+=== Kodo Kojo
+
+link:https://github.com/kodokojo/kodokojo[Kodo Kojo] by Xebia. Based on Apache Mesos, no activity for the past 2 years.
+
+image:https://raw.githubusercontent.com/kodokojo/kodokojo/master/doc/images/kodokojo-architecture-v3.png[]
